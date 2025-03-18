@@ -5,9 +5,11 @@ compiler=gcc
 compiler.cppstd=gnu20
 compiler.libcxx=libstdc++
 compiler.version=11.5
-os=Linux
+os=Windows
 
 [buildenv]
+PKG_CONFIG_PATH=/custom/libs/mxe/usr/bin/x86_64-w64-mingw32.shared-pkg-config
+CROSS_COMPILE=x86_64-w64-mingw32.shared
 CC=x86_64-w64-mingw32.shared-gcc
 CXX=x86_64-w64-mingw32.shared-g++
 LD=x86_64-w64-mingw32.shared-ld
@@ -22,3 +24,8 @@ CMAKE_RC_COMPILER=x86_64-w64-mingw32.shared-windres
 CMAKE_STRIP=${STRIP}
 CMAKE_AR=${AR}
 CMAKE_RANLIB=${RANLIB}
+CMAKE_EXECUTABLE_SUFFIC_CXX=.exe
+CMAKE_EXECUTABLE_SUFFIC_C=.exe
+
+[conf]
+tools.cmake.cmaketoolchain:user_toolchain+={{profile_dir}}/mingw_conan.cmake
