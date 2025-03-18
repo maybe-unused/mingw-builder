@@ -18,6 +18,10 @@ set(CMAKE_RC_COMPILER x86_64-w64-mingw32.shared-windres)
 # Add the suffix for executable files (Windows .exe)
 set(CMAKE_EXECUTABLE_SUFFIX .exe)
 
+# You might want to uncomment it SOMETIMES, but not for each project i dunno
+# add_compile_options(-mconsole -lmsvcr110 -ldbghelp -lpsapi)
+# add_link_options(-mconsole -lmsvcr110 -ldbghelp -lpsapi)
+
 # Specify how to search for libraries and includes
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
