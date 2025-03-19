@@ -20,6 +20,7 @@ RUN wget https://raw.githubusercontent.com/Winetricks/winetricks/master/src/wine
 RUN chmod +x winetricks
 RUN apt-get install -y wine64
 
-RUN export WINDIR="/usr/lib/x86_64-linux-gnu/wine/x86_64-windows"
+RUN winetricks vcrun2015 || true
+ENV WINDIR="/usr/lib/x86_64-linux-gnu/wine/x86_64-windows"
 RUN echo "export WINDIR=\"${WINDIR}\"" >> /root/.bashrc
 RUN echo "export PATH=\"${PATH}\"" >> /root/.bashrc
