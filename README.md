@@ -68,3 +68,15 @@ Cmake toolchain file `mingw-w64-x86_64.cmake` располагается в
 ```
 
 MSVC runtime library `msvcrt110.dll` располагается в `/usr/lib/x86_64-linux-gnu/wine/x86_64-windows`
+
+## Команды для деплоя
+```sh
+# qml plugins directory
+cp -r /custom/libs/mxe/usr/x86_64-w64-mingw32.shared/qt5/qml/ .
+
+# qt core dlls
+cp /custom/libs/mxe/usr/x86_64-w64-mingw32.shared/qt5/bin/*.dll .
+
+# mingw dll libraries
+cp /custom/libs/mxe/usr/x86_64-w64-mingw32.shared/bin/*.dll .
+```
