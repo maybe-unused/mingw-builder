@@ -66,3 +66,5 @@ Cmake toolchain file `mingw-w64-x86_64.cmake` располагается в
 ```sh
 /custom/cmake/mingw-w64-x86_64.cmake
 ```
+
+MSVC runtime library `msvcrt110.dll` располагается в `/usr/lib/x86_64-linux-gnu/wine/x86_64-windows`
