@@ -15,12 +15,4 @@ RUN cargo install just
 RUN conan profile detect
 WORKDIR /usr/local/bin
 
-# This needed for msvcrt110 library
-RUN wget https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks
-RUN chmod +x winetricks
-RUN apt-get install -y wine64
-
-RUN winetricks vcrun2015 || true
-ENV WINDIR="/usr/lib/x86_64-linux-gnu/wine/x86_64-windows"
-RUN echo "export WINDIR=\"${WINDIR}\"" >> /root/.bashrc
 RUN echo "export PATH=\"${PATH}\"" >> /root/.bashrc
