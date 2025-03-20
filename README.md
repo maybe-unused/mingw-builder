@@ -79,6 +79,19 @@ if("${CMAKE_HOST_SYSTEM_NAME}" STREQUAL "Linux" AND (MINGW OR CYGWIN))
 endif()
 ```
 
+If your project depends on `ws_32` library (which is usually the case for projects that use `winsock` on windows), you should link your target to `ws2_32` library.
+You can do this by adding the following line to your `CMakeLists.txt`:
+```cmake
+if(MINGW OR CYGWIN)
+  message(STATUS "[${PROJECT_FULL_NAME}] mingw detected, adding ws2_32 and wsock32 to standard libraries")
+  foreach(LANG C CXX)
+    set(CMAKE_${LANG}_STANDARD_LIBRARIES "${CMAKE_${LANG}_STANDARD_LIBRARIES} -lws2_32 -lwsock32")
+    message(STATUS "CMAKE_${LANG}_STANDARD_LIBRARIES: ${CMAKE_${LANG}_STANDARD_LIBRARIES}")
+  endforeach()
+endif()
+```
+
+
 ## Команды для деплоя
 ```sh
 # qml directory
