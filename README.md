@@ -33,7 +33,7 @@ docker container run -it -v $PATH_TO_PROJECT:/custom/projects/myproject -w /cust
 
 Эта команда нужна чтобы кросс компилировать конан проект в контейнере для винды
 ```sh
-conan build . -pr:a=conan-mingw --build=missing -o"*:shared=True"
+conan build . --build=missing --settings=build_type=Debug --profile:host=conan-mingw --profile:build=default
 ```
 
 Аналогично только на расте
@@ -59,6 +59,12 @@ cmake -S .. -B . -DCMAKE_TOOLCHAIN_FILE=/custom/cmake/mingw-w64-x86_64.cmake
 - `$CUSTOM_QT_PATH/bin` - путь к утилитам qt
 - `$CUSTOM_MXE_TARGET_PATH/lib` - путь к библиотекам mxe
 - `/root/.cargo/bin` - путь к утилитам cargo
+
+Следующие переменные определены в bashrc:
+- `MXE_TARGET=x86_64-w64-mingw32.shared`
+- `CUSTOM_MXE_PATH=/custom/libs/mxe`
+- `CUSTOM_MXE_TARGET_PATH=/custom/libs/mxe/usr/x86_64-w64-mingw32.shared`
+- `CUSTOM_QT_PATH=/custom/libs/mxe/usr/x86_64-w64-mingw32.shared/qt5`
 
 Профиль conan `conan-mingw` располагается в `~/.conan2/profiles/conan-mingw`
 
@@ -94,15 +100,5 @@ endif()
 
 ## Команды для деплоя
 ```sh
-# qml directory
-cp -r /custom/libs/mxe/usr/x86_64-w64-mingw32.shared/qt5/qml/ .
-
-# qml plugins
-cp -r /custom/libs/mxe/usr/x86_64-w64-mingw32.shared/qt5/plugins/ .
-
-# qt core dlls
-cp -r /custom/libs/mxe/usr/x86_64-w64-mingw32.shared/qt5/bin/* .
-
-# mingw dll libraries
-cp -r /custom/libs/mxe/usr/x86_64-w64-mingw32.shared/bin/* .
+mxedeployqt --mxepath $CUSTOM_MXE_PATH --mxetarget $MXE_TARGET .
 ```
